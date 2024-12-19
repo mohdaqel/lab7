@@ -1,3 +1,12 @@
 Username: admin, Password: admin123
 Username: john, Password: john123
-Username: jane, Password: jane123
+
+
+git add .
+git commit -m "Updated a.txt with new changes"
+git pushgit add .
+git commit -m "Added new feature"
+git push -u origin new-feature
+
+
+git commit -m "Updated a.txt with new changes"
