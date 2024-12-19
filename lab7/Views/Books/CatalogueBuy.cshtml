@@ -1,0 +1,60 @@
+@model IEnumerable<lab7.Models.book>
+
+@{
+    ViewData["Title"] = "Book Catalogue";
+}
+
+<div class="container">
+    <h1>Book Catalogue</h1>
+
+    @if (ViewBag.IsAdmin == true)
+    {
+        <p>
+            <a asp-action="Create" class="btn btn-primary">Add New Book</a>
+        </p>
+    }
+
+    <div class="row">
+        @if (Model != null && Model.Any())
+        {
+            @foreach (var item in Model)
+            {
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        @if (!string.IsNullOrEmpty(item.imgfile))
+                        {
+                            <img src="~/images/@item.imgfile" class="card-img-top" alt="@item.title">
+                        }
+                        <div class="card-body">
+                            <h5 class="card-title">@item.title</h5>
+                            <p class="card-text">Price: $@item.price</p>
+                            
+                            <form asp-action="AddToCart" method="post" class="mb-2">
+                                <input type="hidden" name="id" value="@item.Id" />
+                                <div class="form-group">
+                                    <label for="quantity">Quantity:</label>
+                                    <input type="number" class="form-control" id="quantity" name="quantity" value="1" min="1" required />
+                                </div>
+                                <button type="submit" class="btn btn-primary mt-2">Add to Cart</button>
+                            </form>
+
+                            @if (ViewBag.IsAdmin == true)
+                            {
+                                <div class="admin-actions mt-2">
+                                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">Edit</a>
+                                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="col-12">
+                <p>No books available.</p>
+            </div>
+        }
+    </div>
+</div>

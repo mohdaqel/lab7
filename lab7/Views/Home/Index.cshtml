@@ -1,0 +1,58 @@
+@{
+    ViewData["Title"] = "Welcome to Book Store";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to Our Book Store</h1>
+    
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Start Shopping</h5>
+                        <p class="card-text">Browse our collection of books and start shopping today!</p>
+                        @if (Context.Session.GetString("UserName") != null)
+                        {
+                            <a asp-controller="Books" asp-action="CatalogueBuy" class="btn btn-primary">View Catalogue</a>
+                        }
+                        else
+                        {
+                            <div>
+                                <p>Please login to start shopping</p>
+                                <a asp-controller="UsersAccounts" asp-action="Login" class="btn btn-primary">Login</a>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Wide Selection</h5>
+                        <p class="card-text">Choose from our vast collection of books across various genres.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Best Prices</h5>
+                        <p class="card-text">Get the best deals on your favorite books.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Fast Delivery</h5>
+                        <p class="card-text">Quick and reliable delivery to your doorstep.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

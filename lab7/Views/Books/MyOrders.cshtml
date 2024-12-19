@@ -1,0 +1,40 @@
+@model List<lab7.Models.bookorder>
+
+@{
+    ViewData["Title"] = "My Orders";
+}
+
+<div class="container">
+    <h2>My Orders</h2>
+
+    @if (Model != null && Model.Any())
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Date</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var order in Model)
+                {
+                    <tr>
+                        <td>@order.Id</td>
+                        <td>@order.orderdate.ToShortDateString()</td>
+                        <td>$@order.total</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>You haven't placed any orders yet.</p>
+    }
+
+    <div class="mt-3">
+        <a asp-action="CatalogueBuy" class="btn btn-primary">Go to Catalogue</a>
+    </div>
+</div>
